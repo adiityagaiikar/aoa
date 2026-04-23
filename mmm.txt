@@ -1,0 +1,109 @@
+1. Install & Configure MediaWiki (Database + Admin Account)
+7
+Steps:
+Download MediaWiki from the official site
+Extract it into your web server directory (e.g., htdocs in XAMPP)
+Create Database:
+Open phpMyAdmin
+Create database: mediawiki_db
+Run Installation:
+Go to: http://localhost/mediawiki
+Click Set up the wiki
+Fill details:
+DB Name: mediawiki_db
+Username: root
+Password: (blank for XAMPP)
+Create Admin Account:
+Username: admin
+Password: (set your own)
+Site name: Coaching Portal
+Download LocalSettings.php and place it in MediaWiki root folder
+2. Create Roles (Admin, Teacher, Student)
+6
+
+MediaWiki doesn’t directly use “roles”—it uses user groups.
+
+Add in LocalSettings.php:
+# Teacher group
+$wgGroupPermissions['teacher']['edit'] = true;
+$wgGroupPermissions['teacher']['createpage'] = true;
+
+# Student group
+$wgGroupPermissions['student']['read'] = true;
+$wgGroupPermissions['student']['edit'] = false;
+
+# Admin already exists (sysop)
+Assign users:
+Go to: Special:UserRights
+Add users to:
+teacher
+student
+3. Install Extensions (VisualEditor & Cite)
+6
+(A) VisualEditor
+Download VisualEditor extension
+Extract to /extensions/VisualEditor
+Add in LocalSettings.php:
+wfLoadExtension( 'VisualEditor' );
+Also install Parsoid (required)
+(B) Cite Extension
+Download Cite extension
+Extract to /extensions/Cite
+Add:
+wfLoadExtension( 'Cite' );
+Now you can use:
+<ref>This is a reference</ref>
+4. Create Categories (Notes, Exams, Notices)
+6
+Steps:
+Search:
+Category:Notes → Create page
+Category:Exams → Create page
+Category:Notices → Create page
+Add description like:
+This category contains study notes.
+5. Create Sample Pages
+6
+(A) Notes Page
+
+Title: Physics Notes
+
+== Physics Chapter 1 ==
+Content about motion...
+
+[[Category:Notes]]
+(B) Exams Page
+
+Title: Mid Term Exam Schedule
+
+{| class="wikitable"
+|-
+! Subject !! Date
+|-
+| Physics || 10 May
+|-
+| Math || 12 May
+|}
+
+[[Category:Exams]]
+(C) Notices Page
+
+Title: Holiday Notice
+
+The institute will remain closed on Monday.
+
+[[Category:Notices]]
+6. Testing
+
+✔ Login as:
+
+Admin → full access
+Teacher → can edit/create
+Student → read-only
+
+✔ Check:
+
+Categories show pages
+VisualEditor works
+References (Cite) work
+Quick Viva Summary (Impor
