@@ -1,0 +1,230 @@
+Open:
+LocalSettings.php
+🔹 Change Logo
+Add:
+$wgLogo = "$wgResourceBasePath/resources/assets/mylogo.png";
+
+🔹 Change Skin
+Example:
+wfLoadSkin( 'Vector' );   // default
+wfLoadSkin( 'MonoBook' );
+
+🔹 Customize Sidebar
+Edit:
+MediaWiki:Sidebar
+(from browser)
+
+🔐 4. Enable Authentication & User Roles
+Default Roles in MediaWiki:
+Sysop (Admin)
+
+
+Bureaucrat
+
+
+User
+
+
+
+Restrict Editing (optional)
+In LocalSettings.php:
+$wgGroupPermissions['*']['edit'] = false;   // anonymous users cannot edit
+$wgGroupPermissions['user']['edit'] = true;
+
+Enable Login Only Access
+$wgGroupPermissions['*']['read'] = false;
+
+🔌 5. Install Essential Extensions
+Go to:
+C:\xampp\htdocs\mediawiki\extensions
+
+📌 Install VisualEditor
+Step 1:
+Download VisualEditor
+Step 2:
+Add in LocalSettings.php:
+wfLoadExtension( 'VisualEditor' );
+
+📌 Install Cite Extension
+wfLoadExtension( 'Cite' );
+ Other Useful Extensions
+ParserFunctions
+
+
+SyntaxHighlight
+
+
+ConfirmEdit (Captcha)
+
+
+
+⚠️ After installing extensions:
+ Restart Apache
+
+🧪 6. Test MediaWiki Instance
+Step 1: Open site
+http://localhost/mediawiki
+
+Step 2: Create Sample Page
+Search:
+
+
+Test Page
+Click Create
+
+
+Add content:
+
+
+== Welcome ==
+This is my first wiki page.
+Save
+
+
+Step 3: Test Features
+Edit page ✔️
+
+
+Add reference (Cite) ✔️
+
+
+Use Visual Editor ✔️
+
+
+Optional (Advanced Setup)
+🔹 Enable File Upload
+$wgEnableUploads = true;
+
+🔹 Pretty URLs
+$wgArticlePath = "/wiki/$1";
+
+
+
+
+
+
+
+
+Steps:
+Open your MediaWiki site (e.g., http://localhost/mediawiki)
+In the search bar, type a new article name
+ Example:
+Company Policies
+FAQs
+Technical Documentation
+Click “Create the page”
+Add content in the editor
+Example:
+== Company Leave Policy ==
+Employees are entitled to 20 paid leaves annually.
+
+== Working Hours ==
+9 AM to 6 PM (Monday to Friday)
+Click Save Page
+
+✅ 2. Use MediaWiki Syntax for Formatting
+🎯 Goal: Make content structured and readable
+Common Syntax:
+Feature
+Syntax
+Output
+Heading
+== Heading ==
+Section title
+Bold
+'''text'''
+text
+Italic
+''text''
+text
+List
+* Item
+Bullet list
+Numbered
+# Item
+Numbered list
+Link
+[[Page Name]]
+Internal link
+
+Example:
+== FAQ ==
+* '''What is login time?'''
+Answer: 9 AM
+
+* '''How to apply leave?'''
+Use HR portal.
+
+✅ 3. Organize Articles into Categories
+🎯 Goal: Easy navigation
+Steps:
+At the bottom of any page, add:
+[[Category:Policies]]
+[[Category:HR]]
+Save the page
+Click category links to view grouped articles
+
+✅ 4. Assign User Roles & Permissions
+🎯 Goal: Control editing access
+Steps:
+Go to Special Pages → User Rights
+Assign roles like:
+Sysop (Admin)
+Editor
+Viewer
+Example:
+Admin → Full control
+Editor → Can edit articles
+User → Read-only access
+👉 Modify permissions in:
+LocalSettings.php
+Example:
+$wgGroupPermissions['editor']['edit'] = true;
+$wgGroupPermissions['user']['edit'] = false;
+
+✅ 5. Enable Discussion Pages & Version Control
+🎯 Goal: Collaboration & tracking changes
+Features:
+Every page has a Talk Page
+Use it for discussion and suggestions
+Version History:
+Click View History
+See:
+Who edited
+What changes were made
+Compare versions
+
+✅ 6. Use Templates & Install Extensions
+🎯 Goal: Maintain consistency and add features
+Templates:
+Create a page:
+Template:PolicyFormat
+Add:
+== Policy Name ==
+Description:
+
+== Rules ==
+* Rule 1
+* Rule 2
+Use in article:
+{{PolicyFormat}}
+
+Extensions:
+Install useful extensions like:
+VisualEditor → WYSIWYG editing
+Cite → References
+CategoryTree → Better navigation
+Installation Steps:
+Download extension
+Place in /extensions/
+Add to LocalSettings.php:
+wfLoadExtension( 'VisualEditor' );
+
+✅ 7. Generate Reports on Usage & Edits
+🎯 Goal: Monitor activity and performance
+Use Special Pages:
+Special:Statistics → Site stats
+Special:RecentChanges → Latest edits
+Special:PopularPages → Most viewed pages
+Special:UserContributions → User activity
+
